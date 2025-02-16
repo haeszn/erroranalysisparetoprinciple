@@ -8,16 +8,36 @@ import subprocess
 import re
 import pandas as pd
 import matplotlib.pyplot as plt
-from matplotlib.ticker import PercentFormatter  
+import tkinter  
 import tkinter as tk
+from matplotlib.ticker import PercentFormatter
 from tkinter import filedialog
 
 # Function to open file dialog and select files
 def select_files():
-    root = tk.Tk()
-    root.withdraw()  # Hide the root window:
-    file_paths = filedialog.askopenfilenames(title="Select Python Files", filetypes=[("Python Files", "*.py")])
-    return list(file_paths)
+    def input_files():
+        file_paths = filedialog.askopenfilenames(title="Select Python Files", filetypes=[("Python Files", "*.py")])
+        window.quit()
+        return list(file_paths)
+
+    window = tk.Tk()
+    window.title("File Selector")
+    window.geometry('340x440')
+    window.configure(bg='#333333')
+
+    frame = tk.Frame(window, bg='#333333')
+    frame.pack(expand=True)
+
+    login_label = tk.Label(frame, text="Select Files", bg='#333333', fg="#FF3399", font=("Arial", 30))
+    login_label.pack(pady=20)
+
+    login_button = tk.Button(frame, text="Browse", bg="#FF3399", fg="#FFFFFF", font=("Arial", 16), command=input_files)
+    login_button.pack(pady=20)
+
+    window.mainloop()
+
+    return input_files()
+
 
 # Select files using the file dialog
 python_files = select_files()
@@ -76,6 +96,8 @@ ax1.set_ylabel("Number of Errors", color="C0")
 ax1.tick_params(axis="y", colors="C0")
 ax1.set_xlabel("Error Category")
 ax1.set_xticklabels(df.index, rotation=45)
+ax1.set_title("Pareto Chart of Error Categories")
+ax1.window_title("Pareto Chart of Error Categories")
 ax2 = ax1.twinx()
 ax2.plot(df.index, df["cumpercentage"], color="C1", marker="D", ms=7)
 ax2.yaxis.set_major_formatter(PercentFormatter())
