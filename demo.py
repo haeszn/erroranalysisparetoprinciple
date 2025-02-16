@@ -83,6 +83,8 @@ def run_pylint_analysis():
 
     # Show the pareto chart
     fig, ax1 = plt.subplots()
+    fig.patch.set_facecolor('#333333')  # Set the background color of the figure
+    ax1.set_facecolor('#444444')  # Set the background color of the axes
     ax1.bar(df.index, df["Analysis"], color="C0")
     ax1.set_ylabel("Number of Errors", color="C0")
     ax1.tick_params(axis="y", colors="C0")
@@ -175,10 +177,6 @@ control_frame.pack(side=tk.TOP, fill=tk.X, padx=10, pady=10)
 # Create a button to select files
 select_files_button = tk.Button(control_frame, text="Select Files", font=("Arial", 16), command=select_files, bg='#FF3399', fg='#FFFFFF')
 select_files_button.pack(side=tk.LEFT, padx=10)
-
-# Create a button to show selected files
-show_files_button = tk.Button(control_frame, text="Show Selected Files", font=("Arial", 16), command=show_selected_files, bg='#FF3399', fg='#FFFFFF')
-show_files_button.pack(side=tk.LEFT, padx=10)
 
 # Create a button to run the Pareto analysis
 run_analysis_button = tk.Button(control_frame, text="Run Pareto Analysis", font=("Arial", 16), command=lambda: threading.Thread(target=run_pylint_analysis).start(), bg='#FF3399', fg='#FFFFFF')
