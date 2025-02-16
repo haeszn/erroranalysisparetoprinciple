@@ -1,0 +1,20 @@
+************* Module hello
+C:\Users\emman\Downloads\hello.py:2:16: E0001: Parsing failed: 'expected ':' (hello, line 2)' (syntax-error)
+************* Module another
+C:\Users\emman\Downloads\another.py:29:0: C0305: Trailing newlines (trailing-newlines)
+C:\Users\emman\Downloads\another.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+C:\Users\emman\Downloads\another.py:2:0: C0116: Missing function or method docstring (missing-function-docstring)
+C:\Users\emman\Downloads\another.py:8:0: C0116: Missing function or method docstring (missing-function-docstring)
+C:\Users\emman\Downloads\another.py:11:0: E1111: Assigning result of a function call, where the function has no return (assignment-from-no-return)
+C:\Users\emman\Downloads\another.py:13:0: C0103: Constant name "b" doesn't conform to UPPER_CASE naming style (invalid-name)
+C:\Users\emman\Downloads\another.py:15:0: C0116: Missing function or method docstring (missing-function-docstring)
+C:\Users\emman\Downloads\another.py:18:0: C0103: Constant name "Number" doesn't conform to UPPER_CASE naming style (invalid-name)
+C:\Users\emman\Downloads\another.py:19:9: E0602: Undefined variable 'number' (undefined-variable)
+C:\Users\emman\Downloads\another.py:21:0: E1111: Assigning result of a function call, where the function has no return (assignment-from-no-return)
+C:\Users\emman\Downloads\another.py:21:0: C0103: Constant name "value" doesn't conform to UPPER_CASE naming style (invalid-name)
+C:\Users\emman\Downloads\another.py:23:0: C0103: Constant name "num_terms" doesn't conform to UPPER_CASE naming style (invalid-name)
+C:\Users\emman\Downloads\another.py:24:62: E0602: Undefined variable 'num_term' (undefined-variable)
+
+------------------------------------------------------------------
+Your code has been rated at 0.00/10 (previous run: 0.00/10, +0.00)
+

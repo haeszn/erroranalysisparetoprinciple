@@ -1,21 +1,41 @@
+#download the following packages
+#pip install pylint
+#pip install pandas
+#pip install matplotlib
+
 import os
 import subprocess
 import re
 import pandas as pd
 import matplotlib.pyplot as plt
-from matplotlib.ticker import PercentFormatter
+from matplotlib.ticker import PercentFormatter  
+import tkinter as tk
+from tkinter import filedialog
 
-directory = r"C:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\test"
-log_file = os.path.join(directory, "pylint_log.txt")
+# Function to open file dialog and select files
+def select_files():
+    root = tk.Tk()
+    root.withdraw()  # Hide the root window:
+    file_paths = filedialog.askopenfilenames(title="Select Python Files", filetypes=[("Python Files", "*.py")])
+    return list(file_paths)
 
-python_files = [os.path.join(directory, f) for f in os.listdir(directory) if f.endswith('.py')]
+# Select files using the file dialog
+python_files = select_files()
 
+# If no files are selected, exit the script
+if not python_files:
+    print("No files selected. Exiting.")
+    exit()
+
+# Run pylint on the selected python files and write the output to a log file
+log_file = "pylint_log.txt"
 with open(log_file, 'w', encoding='utf-8') as f:
     for python_file in python_files:
         result = subprocess.run(["pylint", "--exit-zero", "--output-format=text", python_file], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8')
         f.write(result.stdout)
         f.write(result.stderr)
 
+# Error codes (to be edited later)
 error_codes = {
     'Fatal': ['F0001'],
     'Error': ['E00139', 'E130711', 'E1507', 'E1201', 'E1301', 'E11426', 'E011612', 'E0104', 'E0001', 'E1700', 'E010510', 'E02032', 'E02373', 'E0242', 'E0245', 'E0238', 'E0236', 'E0202', 'E110110', 'E1136', 'E11114', 'E11285', 'E07018', 'E011110', 'E0712', 'E1141', 'E0240', 'E0239', 'E030412', 'E030812', 'E0243', 'E0244', 'E0311', 'E0313', 'E0312', 'E0309', 'E0305', 'E0310', 'E0303', 'E1139', 'E0306', 'E1127', 'E0307', 'E113010', 'E0301', 'E1134', 'E1133', 'E110210', 'E0702', 'E1519', 'E1520', 'E113110', 'E1135', 'E2501', 'E0611', 'E0603', 'E0602', 'E0601', 'E0118'],
@@ -24,9 +44,11 @@ error_codes = {
     'Refactor': ['R0101', 'R0102', 'R0103', 'R0104', 'R0105', 'R0106', 'R0107', 'R0108', 'R0109', 'R0110', 'R0111', 'R0112', 'R0113', 'R0114', 'R0115', 'R0116', 'R0117', 'R0118', 'R0119', 'R0120', 'R0121', 'R0122', 'R0123', 'R0124', 'R0125', 'R0126', 'R0127', 'R0128', 'R0129', 'R0130', 'R0131', 'R0132', 'R0133', 'R0134', 'R0135', 'R0136', 'R0137', 'R0138', 'R0139', 'R0140', 'R0141', 'R0142', 'R0143', 'R0144', 'R0145', 'R0146', 'R0147', 'R0148', 'R0149', 'R0150', 'R0151', 'R0152', 'R0153', 'R0154', 'R0155', 'R0156', 'R0157', 'R0158', 'R0159', 'R0160', 'R0161', 'R0162', 'R0163', 'R0164', 'R0165', 'R0166', 'R0167', 'R0168', 'R0169', 'R0170', 'R0171', 'R0172', 'R0173', 'R0174', 'R0175', 'R0176', 'R0177', 'R0178', 'R0179', 'R0180', 'R0181', 'R0182', 'R0183', 'R0184', 'R0185', 'R0186', 'R0187', 'R0188', 'R0189', 'R0190', 'R0191', 'R0192', 'R0193', 'R0194', 'R0195', 'R0196', 'R0197', 'R0198', 'R0199']
 }
 
+# Count the number of errors in each category
 error_counts = {code: 0 for codes in error_codes.values() for code in codes}
 category_counts = {category: 0 for category in error_codes.keys()}
 
+# Count the number of errors in each category by finding the error codes in the log file
 with open(log_file, 'r', encoding='utf-8') as f:
     log_content = f.read()
     for code in error_counts:
@@ -36,17 +58,18 @@ with open(log_file, 'r', encoding='utf-8') as f:
             if code in codes:
                 category_counts[category] += count
 
+# Display the number of errors in each category
 print("Accumulated counts:")
 for category, count in category_counts.items():
     print(f"{category}: {count}")
 
-
+# Dataframe of the error categories for the pareto chart
 df = pd.DataFrame({'Analysis': [category_counts['Fatal'], category_counts['Error'], category_counts['Warning'],  category_counts['Convention'], category_counts['Refactor']]})
 df.index = ['Fatal', 'Error', 'Warning', 'Convention', 'Refactor']
 df = df.sort_values(by='Analysis', ascending=False)
 df["cumpercentage"] = df["Analysis"].cumsum()/df["Analysis"].sum()* 100
 
-
+# Show the pareto chart
 fig, ax1 = plt.subplots()
 ax1.bar(df.index, df["Analysis"], color="C0")
 ax1.set_ylabel("Number of Errors", color="C0")
@@ -58,22 +81,43 @@ ax2.plot(df.index, df["cumpercentage"], color="C1", marker="D", ms=7)
 ax2.yaxis.set_major_formatter(PercentFormatter())
 ax2.tick_params(axis="y", colors="C1")
 plt.show()
-df_pareto = df[df["cumpercentage"] <= 85]
 
+# Find the top errors contributing to 80% of the issues
+df_pareto = df[df["cumpercentage"] <= 80]
+
+# If the dataframe is empty, use the first row
+if df_pareto.empty:
+    df_pareto = df.iloc[:1]
+
+# Display the top errors contributing to 80% of the issues
 df_pareto_category = df_pareto.index.tolist()
 final_analysis = [category[0] for category in df_pareto_category]
 print("\nTop Errors Contributing to 80% of Issues:")
 print(final_analysis)
 
-
+# Display the feedback for the errors causing 80% of the issues
 relevant_errors = df_pareto.index.tolist()
 print("\nFeedbacks for errors causing 80% of the issues:")
+feedbacks_by_module = {}
+
+# Find the error codes in the log file and display the feedback
 for error in relevant_errors:
-    print(f"\nCategory: {error}")
     with open(log_file, 'r', encoding='utf-8') as f:
         log_content = f.readlines()
         for line in log_content:
             if any(code in line for code in error_codes[error]):
-                print(line.strip())
+                match = re.search(r'(\w+\.py):(\d+):\d+: (\w\d+): (.+)', line)
+                if match:
+                    module_name = match.group(1)
+                    line_number = match.group(2)
+                    error_code = match.group(3)
+                    error_message = match.group(4)
+                    if module_name not in feedbacks_by_module:
+                        feedbacks_by_module[module_name] = []
+                    feedbacks_by_module[module_name].append(f"Line {line_number} : {error_code}: {error_message}")
 
-        
+# Display the feedbacks by module
+for module_name, feedbacks in feedbacks_by_module.items():
+    print(f"\n({module_name})\n")
+    for feedback in feedbacks:
+        print(feedback)
