@@ -1,142 +1,76 @@
-{
-    "version": "1.1.394",
-    "time": "1740216819603",
-    "generalDiagnostics": [
-        {
-            "file": "c:\\Users\\emman\\OneDrive\\Documents\\GitHub\\erroranalysisparetoprinciple\\pytight.py",
-            "severity": "error",
-            "message": "\"filedialog\" is not defined",
-            "range": {
-                "start": {
-                    "line": 8,
-                    "character": 17
-                },
-                "end": {
-                    "line": 8,
-                    "character": 27
-                }
-            },
-            "rule": "reportUndefinedVariable"
-        },
-        {
-            "file": "c:\\Users\\emman\\OneDrive\\Documents\\GitHub\\erroranalysisparetoprinciple\\pytight.py",
-            "severity": "error",
-            "message": "\"selected_files_text\" is not defined",
-            "range": {
-                "start": {
-                    "line": 13,
-                    "character": 4
-                },
-                "end": {
-                    "line": 13,
-                    "character": 23
-                }
-            },
-            "rule": "reportUndefinedVariable"
-        },
-        {
-            "file": "c:\\Users\\emman\\OneDrive\\Documents\\GitHub\\erroranalysisparetoprinciple\\pytight.py",
-            "severity": "error",
-            "message": "\"tk\" is not defined",
-            "range": {
-                "start": {
-                    "line": 13,
-                    "character": 36
-                },
-                "end": {
-                    "line": 13,
-                    "character": 38
-                }
-            },
-            "rule": "reportUndefinedVariable"
-        },
-        {
-            "file": "c:\\Users\\emman\\OneDrive\\Documents\\GitHub\\erroranalysisparetoprinciple\\pytight.py",
-            "severity": "error",
-            "message": "\"selected_files_text\" is not defined",
-            "range": {
-                "start": {
-                    "line": 16,
-                    "character": 12
-                },
-                "end": {
-                    "line": 16,
-                    "character": 31
-                }
-            },
-            "rule": "reportUndefinedVariable"
-        },
-        {
-            "file": "c:\\Users\\emman\\OneDrive\\Documents\\GitHub\\erroranalysisparetoprinciple\\pytight.py",
-            "severity": "error",
-            "message": "\"tk\" is not defined",
-            "range": {
-                "start": {
-                    "line": 16,
-                    "character": 39
-                },
-                "end": {
-                    "line": 16,
-                    "character": 41
-                }
-            },
-            "rule": "reportUndefinedVariable"
-        },
-        {
-            "file": "c:\\Users\\emman\\OneDrive\\Documents\\GitHub\\erroranalysisparetoprinciple\\pytight.py",
-            "severity": "error",
-            "message": "\"selected_files_text\" is not defined",
-            "range": {
-                "start": {
-                    "line": 18,
-                    "character": 8
-                },
-                "end": {
-                    "line": 18,
-                    "character": 27
-                }
-            },
-            "rule": "reportUndefinedVariable"
-        },
-        {
-            "file": "c:\\Users\\emman\\OneDrive\\Documents\\GitHub\\erroranalysisparetoprinciple\\pytight.py",
-            "severity": "error",
-            "message": "\"tk\" is not defined",
-            "range": {
-                "start": {
-                    "line": 18,
-                    "character": 35
-                },
-                "end": {
-                    "line": 18,
-                    "character": 37
-                }
-            },
-            "rule": "reportUndefinedVariable"
-        },
-        {
-            "file": "c:\\Users\\emman\\OneDrive\\Documents\\GitHub\\erroranalysisparetoprinciple\\pytight.py",
-            "severity": "error",
-            "message": "\"python_files\" is not defined",
-            "range": {
-                "start": {
-                    "line": 29,
-                    "character": 27
-                },
-                "end": {
-                    "line": 29,
-                    "character": 39
-                }
-            },
-            "rule": "reportUndefinedVariable"
-        }
-    ],
-    "summary": {
-        "filesAnalyzed": 1,
-        "errorCount": 8,
-        "warningCount": 0,
-        "informationCount": 0,
-        "timeInSec": 0.347
-    }
-}
-
+c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\before.py
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\before.py:116:23 - error: "__getitem__" method not defined on type "int" (reportIndexIssue)
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\before.py:130:49 - error: Argument of type "str | Unknown | int" cannot be assigned to parameter "key" of type "str" in function "__getitem__"
+    Type "str | Unknown | int" is not assignable to type "str"
+      "int" is not assignable to "str" (reportArgumentType)
+2 errors, 0 warnings, 0 informations 
+c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\demo.py
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\demo.py:128:68 - error: Argument of type "list[str]" cannot be assigned to parameter "columns" of type "Axes | None" in function "__init__"
+    Type "list[str]" is not assignable to type "Axes | None"
+      "list[str]" is not assignable to "ExtensionArray"
+      "list[str]" is not assignable to "ndarray[Unknown, Unknown]"
+      "list[str]" is not assignable to "Index"
+      "list[str]" is not assignable to "Series"
+      "list[str]" is incompatible with protocol "SequenceNotStr[Unknown]"
+        "index" is an incompatible type
+          Type "(value: str, start: SupportsIndex = 0, stop: SupportsIndex = sys.maxsize, /) -> int" is not assignable to type "(value: Any, /, start: int = 0, stop: int = ...) -> int"
+    ... (reportArgumentType)
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\demo.py:161:48 - error: "object*" is not iterable
+    "__iter__" method not defined (reportGeneralTypeIssues)
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\demo.py:171:18 - error: "object*" is not iterable
+    "__iter__" method not defined (reportGeneralTypeIssues)
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\demo.py:179:42 - error: "json" is not defined (reportUndefinedVariable)
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\demo.py:188:32 - error: "json" is not defined (reportUndefinedVariable)
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\demo.py:205:51 - error: "module_name" is possibly unbound (reportPossiblyUnboundVariable)
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\demo.py:206:25 - error: "module_name" is possibly unbound (reportPossiblyUnboundVariable)
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\demo.py:243:37 - error: Argument of type "PhotoImage" cannot be assigned to parameter "image" of type "CTkImage | None" in function "__init__"
+    Type "PhotoImage" is not assignable to type "CTkImage | None"
+      "PhotoImage" is not assignable to "CTkImage"
+      "PhotoImage" is not assignable to "None" (reportArgumentType)
+8 errors, 0 warnings, 0 informations 
+c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\Final_Python_File.py
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\Final_Python_File.py:134:68 - error: Argument of type "list[str]" cannot be assigned to parameter "columns" of type "Axes | None" in function "__init__"
+    Type "list[str]" is not assignable to type "Axes | None"
+      "list[str]" is not assignable to "ExtensionArray"
+      "list[str]" is not assignable to "ndarray[Unknown, Unknown]"
+      "list[str]" is not assignable to "Index"
+      "list[str]" is not assignable to "Series"
+      "list[str]" is incompatible with protocol "SequenceNotStr[Unknown]"
+        "index" is an incompatible type
+          Type "(value: str, start: SupportsIndex = 0, stop: SupportsIndex = sys.maxsize, /) -> int" is not assignable to type "(value: Any, /, start: int = 0, stop: int = ...) -> int"
+    ... (reportArgumentType)
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\Final_Python_File.py:167:48 - error: "object*" is not iterable
+    "__iter__" method not defined (reportGeneralTypeIssues)
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\Final_Python_File.py:177:18 - error: "object*" is not iterable
+    "__iter__" method not defined (reportGeneralTypeIssues)
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\Final_Python_File.py:209:51 - error: "module_name" is possibly unbound (reportPossiblyUnboundVariable)
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\Final_Python_File.py:210:25 - error: "module_name" is possibly unbound (reportPossiblyUnboundVariable)
+5 errors, 0 warnings, 0 informations 
+0 errors, 0 warnings, 0 informations 
+c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\pytight.py
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\pytight.py:131:68 - error: Argument of type "list[str]" cannot be assigned to parameter "columns" of type "Axes | None" in function "__init__"
+    Type "list[str]" is not assignable to type "Axes | None"
+      "list[str]" is not assignable to "ExtensionArray"
+      "list[str]" is not assignable to "ndarray[Unknown, Unknown]"
+      "list[str]" is not assignable to "Index"
+      "list[str]" is not assignable to "Series"
+      "list[str]" is incompatible with protocol "SequenceNotStr[Unknown]"
+        "index" is an incompatible type
+          Type "(value: str, start: SupportsIndex = 0, stop: SupportsIndex = sys.maxsize, /) -> int" is not assignable to type "(value: Any, /, start: int = 0, stop: int = ...) -> int"
+    ... (reportArgumentType)
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\pytight.py:164:48 - error: "object*" is not iterable
+    "__iter__" method not defined (reportGeneralTypeIssues)
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\pytight.py:174:18 - error: "object*" is not iterable
+    "__iter__" method not defined (reportGeneralTypeIssues)
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\pytight.py:206:51 - error: "module_name" is possibly unbound (reportPossiblyUnboundVariable)
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\pytight.py:207:25 - error: "module_name" is possibly unbound (reportPossiblyUnboundVariable)
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\pytight.py:244:47 - error: "LANCZOS" is not a known attribute of module "PIL.Image" (reportAttributeAccessIssue)
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\pytight.py:245:26 - error: Argument of type "Image" cannot be assigned to parameter "name" of type "str | None" in function "__init__"
+    Type "Image" is not assignable to type "str | None"
+      "Image" is not assignable to "str"
+      "Image" is not assignable to "None" (reportArgumentType)
+  c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\pytight.py:247:46 - error: Argument of type "PhotoImage" cannot be assigned to parameter "image" of type "CTkImage | None" in function "__init__"
+    Type "PhotoImage" is not assignable to type "CTkImage | None"
+      "PhotoImage" is not assignable to "CTkImage"
+      "PhotoImage" is not assignable to "None" (reportArgumentType)
+8 errors, 0 warnings, 0 informations 

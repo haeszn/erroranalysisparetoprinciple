@@ -2,14 +2,17 @@
 #pip install pylint
 #pip install pandas
 #pip install matplotlib
+#pip install customtkinter
 
+import os
 import subprocess
 import re
 import pandas as pd
 import matplotlib.pyplot as plt
 import tkinter as tk
-import json
+import customtkinter as ctk
 from tkinter import filedialog
+from PIL import Image
 from tkinter.scrolledtext import ScrolledText
 from matplotlib.ticker import PercentFormatter
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -21,16 +24,19 @@ filess = None
 def select_files():
     global filess
     file_paths = filedialog.askopenfilenames(title="Select Python Files", filetypes=[("Python Files", "*.py")])
+    file_names = [os.path.basename(path) for path in file_paths]  # Extract filenames
+    selected_files_text.delete("1.0", "end")  # Clear previous content
+    selected_files_text.insert("end", "\n".join(file_names))  # Show only filenames
     filess = list(file_paths)
     show_selected_files()
 
 def show_selected_files():
-    selected_files_text.delete(1.0, tk.END)
+    selected_files_text.delete(1.0, ctk.END)
     if filess:
         for file in filess:
-            selected_files_text.insert(tk.END, file + "\n")
+            selected_files_text.insert(ctk.END, file + "\n")
     else:
-        selected_files_text.insert(tk.END, "No files selected.")
+        selected_files_text.insert(ctk.END, "No files selected.")
 
 def run_analysis():
     if not filess:
@@ -43,9 +49,10 @@ def run_analysis():
     pyright_log_file = "pyright_log.txt"
     with open(pyright_log_file, 'w', encoding='utf-8') as f:
         for python_file in python_files:
-            result = subprocess.run(["pyright", "--outputjson", python_file], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8')
+            result = subprocess.run(["pyright", python_file], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8')
             f.write(result.stdout)
             f.write(result.stderr)
+            
 
     # Run Pylint on the selected python files and write the output to a log file
     pylint_log_file = "pylint_log.txt"
@@ -146,7 +153,7 @@ def run_analysis():
         # Add the chart to the chart frame
         canvas = FigureCanvasTkAgg(fig, master=chart_frame)
         canvas.draw()
-        canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+        canvas.get_tk_widget().pack(side=ctk.TOP, fill=ctk.BOTH, expand=True)
         
 # Find the top errors contributing to 80% of the issues
     df_pareto = df[df["cumpercentage"] <= 80]
@@ -170,97 +177,123 @@ def run_analysis():
     for error in relevant_errors:
         if error.startswith('report'):
             with open(pyright_log_file, 'r', encoding='utf-8') as f:
-                log_content = f.read()
-                log_json = json.loads(log_content)
-                log_json_objects = log_content.split("\n")
-                for log_json in log_json_objects:
-                    if log_json.strip():
-                        try:
-                            diagnostic = json.loads(log_json)
-                            for diagnostic in diagnostic["generalDiagnostics"]:
-                                if diagnostic["rule"] == error:
-                                    module_name = diagnostic["file"]
-                                    line_number = diagnostic["range"]["start"]["line"]
-                                    error_message = diagnostic["message"]
-                                    if module_name not in feedbacks_by_module:
-                                        feedbacks_by_module[module_name] = []
-                                    feedbacks_by_module[module_name].append(f"line {line_number}: {error} : {error_message}")
-                        except json.JSONDecodeError:
-                            continue
+                log_content = f.readlines()
+                for line in log_content:
+                    if error in line:
+                        match = re.search(r'([\w.]+\.py):(\d+):\d+ - error: (.+) \((\w+)\)', line)
+                        print(match)
+                        if match:
+                            module_name = match.group(1)
+                            line_number = match.group(2)
+                            error_code = match.group(4)
+                            error_message = match.group(3)
+                            if module_name not in feedbacks_by_module:
+                                feedbacks_by_module[module_name] = {}
+                            feedbacks_by_module[module_name].update({f"Line : {line_number} [{error_code}] - {error_message}":int(line_number)})
         else:
             with open(pylint_log_file, 'r', encoding='utf-8') as f:
                 log_content = f.readlines()
                 for line in log_content:
                     if error in line:
                         match = re.search(r'(\w+\.py):(\d+):\d+: (\w\d+): (.+)', line)
-                        print(match)
+                    
                         if match:
                             module_name = match.group(1)
                             line_number = match.group(2)
                             error_code = match.group(3)
                             error_message = match.group(4)
                             if module_name not in feedbacks_by_module:
-                                feedbacks_by_module[module_name] = []
-                            feedbacks_by_module[module_name].append(f"({line_number})({error_code})({error_message})")
-        
+                                feedbacks_by_module[module_name] = {}
+                            feedbacks_by_module[module_name].update({f"Line : {line_number} [{error_code}] - {error_message}":int(line_number)})
 
+    sorted_feedbacks = sorted(feedbacks_by_module[module_name].items(), key=lambda x: x[1])
+    feedbacks_by_module[module_name] = sorted_feedbacks
+    
 # Apply Pareto's principle to the feedback
 
     feedback_text = ""
     for module_name, feedbacks in feedbacks_by_module.items():
         feedback_text += f"\n({module_name})\n"
         for feedback in feedbacks:
-            feedback_text += feedback + "\n\n"
+            if isinstance(feedback, str):
+                feedback_text += feedback + "\n\n"
+            else:
+                feedback_text += str(feedback[0]) + "\n\n"
 # Update the GUI with the chart and feedbacks
     update_gui(feedback_text)
     show_chart()
 
 def update_gui(feedback_text):
     # Clear previous content
+    for widget in chart_frame.winfo_children():
+        widget.destroy()
     for widget in feedback_frame.winfo_children():
         widget.destroy()
 
     # Add the feedbacks to the feedback frame
-    feedback_label = tk.Label(feedback_frame, text="Feedbacks", font=("Arial", 20), bg='#333333', fg='#FFFFFF')
+    feedback_label = ctk.CTkLabel(feedback_frame, text="Feedbacks", font=("Segoe UI", 20))
     feedback_label.pack(pady=10)
-    feedback_text_widget = ScrolledText(feedback_frame, wrap=tk.WORD, font=("Arial", 12), bg='#333333', fg='#FFFFFF')
-    feedback_text_widget.pack(fill=tk.BOTH, expand=True)
-    feedback_text_widget.insert(tk.END, feedback_text)
+    feedback_text_widget = ScrolledText(feedback_frame, wrap=ctk.WORD, font=("Segoe UI", 12))
+    feedback_text_widget.pack(fill=ctk.BOTH, expand=True)
+    feedback_text_widget.insert(ctk.END, feedback_text)
 
 # Create the main window
-root = tk.Tk()
-root.title("Pyright and Pylint Analysis")
+root = ctk.CTk()
 root.geometry("1200x800")
-root.configure(bg='#333333')
+root.configure(fg_color='#212121')
+     
 
 # Create a title label
-title_label = tk.Label(root, text="Pyright and Pylint Analysis Tool", font=("Arial", 24), bg='#333333', fg='#FF3399')
+title_label = ctk.CTkLabel(root, text="Pareto-Based Linter", font=("Segoe UI", 24), text_color='#FFFFFF', fg_color='#212121')
 title_label.pack(pady=20)
 
 # Create a frame for the buttons and selected files
-control_frame = tk.Frame(root, bg='#333333')
-control_frame.pack(side=tk.TOP, fill=tk.X, padx=10, pady=10)
+control_frame = ctk.CTkFrame(root, border_color='#212121', fg_color='#212121')
+control_frame.pack(anchor="nw", fill=ctk.X, padx=15, pady=15)
 
 # Create a button to select files
-select_files_button = tk.Button(control_frame, text="Select Files", font=("Arial", 16), command=select_files, bg='#FF3399', fg='#FFFFFF')
-select_files_button.pack(side=tk.LEFT, padx=10)
+select_files_button = ctk.CTkButton(master=control_frame, text="Select Files", fg_color='#e0569c', hover_color= '#86335d', font=("Arial", 16),hover=True, command=select_files, height=75, width=200, border_width=3, border_color='#FFFFFF')
+select_files_button.grid(row=0, column=0, padx=10, pady=5, sticky="w")
 
 # Create a button to run the analysis
-run_analysis_button = tk.Button(control_frame, text="Run Analysis", font=("Arial", 16), command=lambda: threading.Thread(target=run_analysis).start(), bg='#FF3399', fg='#FFFFFF')
-run_analysis_button.pack(side=tk.LEFT, padx=10)
- 
-# Create a ScrolledText widget to display selected files
-selected_files_text = ScrolledText(control_frame, wrap=tk.WORD, font=("Arial", 12), height=5, bg='#333333', fg='#FFFFFF')
-selected_files_text.pack(fill=tk.X, pady=10)
+run_analysis_button = ctk.CTkButton(master=control_frame, border_width=3, fg_color='#e0569c', hover_color= '#86335d', text="Run Analysis", font=("DM Sans", 16), border_color='#FFFFFF', height=75, width=200, command=lambda: threading.Thread(target=run_analysis).start())
+run_analysis_button.grid(row=1, column=0, padx=10, pady=15, sticky="w")
+
+# Create a frame to contain the textbox and scrollbar
+text_frame = ctk.CTkFrame(control_frame, fg_color="transparent")
+text_frame.grid(row=0, column=1, rowspan=3, padx=5, pady=3, sticky="nsew")
+
+# Create the CTkTextbox for selected files
+selected_files_text = ctk.CTkTextbox(master=text_frame, font=("Arial", 12), height=10,
+    width= 20,
+    fg_color="#212121",
+    text_color="white",
+    border_color="#FFFFFF",
+    border_width=3,
+    wrap="word"  
+)
+selected_files_text.pack(side="left", fill="both", expand=True)
+
+# Create a vertical scrollbar
+text_scrollbar = ctk.CTkScrollbar(master=text_frame, command=selected_files_text.yview, button_color="#FFFFFF")
+text_scrollbar.pack(side="right", fill="y")
+
+# Link scrollbar to textbox
+selected_files_text.configure(yscrollcommand=text_scrollbar.set)
+
+# Configure grid weights to make the text widget expand
+control_frame.grid_columnconfigure(1, weight=50)
+control_frame.grid_rowconfigure(0, weight=50)
+control_frame.grid_rowconfigure(1, weight=1)
+
 
 # Create a frame for the chart
-chart_frame = tk.Frame(root, bg='#333333')
-chart_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+chart_frame = ctk.CTkFrame(root, fg_color='#212121')
+chart_frame.pack(side=ctk.LEFT, fill=ctk.BOTH, expand=True)
 
 # Create a frame for the feedbacks
-feedback_frame = tk.Frame(root, bg='#333333')
-feedback_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
+feedback_frame = ctk.CTkFrame(root, fg_color='#212121')
+feedback_frame.pack(side=ctk.RIGHT, fill=ctk.BOTH, expand=True)
 
 # Start the Tkinter main loop
 root.mainloop()
-
