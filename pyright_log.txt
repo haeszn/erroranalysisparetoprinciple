@@ -1,0 +1,142 @@
+{
+    "version": "1.1.394",
+    "time": "1740216819603",
+    "generalDiagnostics": [
+        {
+            "file": "c:\\Users\\emman\\OneDrive\\Documents\\GitHub\\erroranalysisparetoprinciple\\pytight.py",
+            "severity": "error",
+            "message": "\"filedialog\" is not defined",
+            "range": {
+                "start": {
+                    "line": 8,
+                    "character": 17
+                },
+                "end": {
+                    "line": 8,
+                    "character": 27
+                }
+            },
+            "rule": "reportUndefinedVariable"
+        },
+        {
+            "file": "c:\\Users\\emman\\OneDrive\\Documents\\GitHub\\erroranalysisparetoprinciple\\pytight.py",
+            "severity": "error",
+            "message": "\"selected_files_text\" is not defined",
+            "range": {
+                "start": {
+                    "line": 13,
+                    "character": 4
+                },
+                "end": {
+                    "line": 13,
+                    "character": 23
+                }
+            },
+            "rule": "reportUndefinedVariable"
+        },
+        {
+            "file": "c:\\Users\\emman\\OneDrive\\Documents\\GitHub\\erroranalysisparetoprinciple\\pytight.py",
+            "severity": "error",
+            "message": "\"tk\" is not defined",
+            "range": {
+                "start": {
+                    "line": 13,
+                    "character": 36
+                },
+                "end": {
+                    "line": 13,
+                    "character": 38
+                }
+            },
+            "rule": "reportUndefinedVariable"
+        },
+        {
+            "file": "c:\\Users\\emman\\OneDrive\\Documents\\GitHub\\erroranalysisparetoprinciple\\pytight.py",
+            "severity": "error",
+            "message": "\"selected_files_text\" is not defined",
+            "range": {
+                "start": {
+                    "line": 16,
+                    "character": 12
+                },
+                "end": {
+                    "line": 16,
+                    "character": 31
+                }
+            },
+            "rule": "reportUndefinedVariable"
+        },
+        {
+            "file": "c:\\Users\\emman\\OneDrive\\Documents\\GitHub\\erroranalysisparetoprinciple\\pytight.py",
+            "severity": "error",
+            "message": "\"tk\" is not defined",
+            "range": {
+                "start": {
+                    "line": 16,
+                    "character": 39
+                },
+                "end": {
+                    "line": 16,
+                    "character": 41
+                }
+            },
+            "rule": "reportUndefinedVariable"
+        },
+        {
+            "file": "c:\\Users\\emman\\OneDrive\\Documents\\GitHub\\erroranalysisparetoprinciple\\pytight.py",
+            "severity": "error",
+            "message": "\"selected_files_text\" is not defined",
+            "range": {
+                "start": {
+                    "line": 18,
+                    "character": 8
+                },
+                "end": {
+                    "line": 18,
+                    "character": 27
+                }
+            },
+            "rule": "reportUndefinedVariable"
+        },
+        {
+            "file": "c:\\Users\\emman\\OneDrive\\Documents\\GitHub\\erroranalysisparetoprinciple\\pytight.py",
+            "severity": "error",
+            "message": "\"tk\" is not defined",
+            "range": {
+                "start": {
+                    "line": 18,
+                    "character": 35
+                },
+                "end": {
+                    "line": 18,
+                    "character": 37
+                }
+            },
+            "rule": "reportUndefinedVariable"
+        },
+        {
+            "file": "c:\\Users\\emman\\OneDrive\\Documents\\GitHub\\erroranalysisparetoprinciple\\pytight.py",
+            "severity": "error",
+            "message": "\"python_files\" is not defined",
+            "range": {
+                "start": {
+                    "line": 29,
+                    "character": 27
+                },
+                "end": {
+                    "line": 29,
+                    "character": 39
+                }
+            },
+            "rule": "reportUndefinedVariable"
+        }
+    ],
+    "summary": {
+        "filesAnalyzed": 1,
+        "errorCount": 8,
+        "warningCount": 0,
+        "informationCount": 0,
+        "timeInSec": 0.347
+    }
+}
+
