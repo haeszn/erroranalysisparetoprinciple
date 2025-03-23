@@ -4,6 +4,7 @@
 #pip install matplotlib
 #pip install customtkinter
 #pip install pillow
+#pip install pyright
 
 import os
 import subprocess
@@ -138,7 +139,7 @@ def run_analysis():
     #pareto Chart
     def show_chart():
         fig, ax1 = plt.subplots(figsize=(10, 6))  # Adjust the size of the plot
-        fig.patch.set_facecolor('#333333')  # Set the background color of the figure
+        fig.patch.set_facecolor('#212121')  # Set the background color of the figure
         ax1.set_facecolor('#444444')  # Set the background color of the axes
         ax1.bar(df['Error Code'], df["Count"], color="C0")
         ax1.set_ylabel("Number of Errors", color="C0")
