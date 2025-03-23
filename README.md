@@ -76,3 +76,4 @@ I would like to take my time to thank our professor, Sir Ralph Laurence Valdueza
 - matplotlib https://matplotlib.org/
 - customtkinter https://customtkinter.tomschimansky.com/
 - pillow https://pypi.org/project/pillow/
+
