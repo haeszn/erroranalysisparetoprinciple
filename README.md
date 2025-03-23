@@ -59,15 +59,17 @@ The lower-right panel will list line numbers, error codes, and detailed messages
 Step 5: Analyze Another File
 To analyze a different file, click "Select Files" again and repeat the process.
 
+#be sure to follow the comments on the codes to fully understand the code!#
 
+## contacts
 You can contact me anytime and anywhere.
 Be sure to credit me if you use this product in your paper.
 Siklab Senior High!
 
+
+## ACKNOWLEDGEMENT
 I would like to take my time to thank our professor, Sir Ralph Laurence Valdueza of his never-ending support. Without his help, this project is still possible. I want to thank Ashley Itorralba for her never ending reminders to submit my part on writing the research paper. I  would like to congratulate everyone who will pas their practical research with the help of our research paper. I would like to thank again Ashley Itorralba for guiding us. This project wouldn't be possible without her knowledge about the topic. That is all! I would to thank everyone who became part of my academic journey. That is all, thank you!
 
-
-#be sure to follow the comments on the codes to fully understand the code!#
 
 ## list of resources
 - pylint    https://pypi.org/project/pylint/
@@ -76,3 +78,4 @@ I would like to take my time to thank our professor, Sir Ralph Laurence Valdueza
 - matplotlib https://matplotlib.org/
 - customtkinter https://customtkinter.tomschimansky.com/
 - pillow https://pypi.org/project/pillow/
+
