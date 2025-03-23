@@ -3,16 +3,23 @@
 #pip install pandas
 #pip install matplotlib
 #pip install customtkinter
+#pip install pillow
+#pip install pyright
 
 import os
 import subprocess
 import re
 import pandas as pd
+from PIL import Image
+import matplotlib.pyplot as plt
 import customtkinter as ctk
 from tkinter import filedialog
+from matplotlib.ticker import PercentFormatter
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import threading
 
 filess = None
+
 
 def select_files():
     global filess
@@ -115,17 +122,59 @@ def run_analysis():
     for code, count in pyright_error_counts.items():
         print(f"{code}: {count}")
  
+    
     # Filter the error counts to only 1 or higher
     filtered_pylint_error_counts = {code: count for code, count in pylint_error_counts.items() if count >= 1}
     filtered_pyright_error_counts = {code: count for code, count in pyright_error_counts.items() if count >= 1}
 
+
     combined_error_counts = {**filtered_pylint_error_counts, **filtered_pyright_error_counts}
 
-    # Display the feedback for the errors
+    #dataframe for the pareto chart
+    df = pd.DataFrame(list(combined_error_counts.items()), columns=['Error Code', 'Count'])
+    df = df.sort_values(by='Count', ascending=False)
+    df["cumpercentage"] = df["Count"].cumsum() / df["Count"].sum() * 100
+    print(df)
+
+    #pareto Chart
+    #def show_chart():
+     #   fig, ax1 = plt.subplots(figsize=(10, 6))  # Adjust the size of the plot
+      # ax1.set_facecolor('#444444')  # Set the background color of the axes
+        #ax1.bar(df['Error Code'], df["Count"], color="C0")
+        #ax1.set_ylabel("Number of Errors", color="C0")
+        #ax1.tick_params(axis="y", colors="C0")
+        #ax1.set_xlabel("Error Code")
+        #ax1.set_xticklabels(df['Error Code'], rotation=90)
+        #ax1.set_title("Pareto Chart of Error Codes")
+        #ax2 = ax1.twinx()
+        #ax2.plot(df['Error Code'], df["cumpercentage"], color="C1", marker="D", ms=7)
+        #ax2.yaxis.set_major_formatter(PercentFormatter())
+        #ax2.tick_params(axis="y", colors="C1")
+        ## Add the chart to the chart frame
+        #canvas = FigureCanvasTkAgg(fig, master=chart_frame)
+        #canvas.draw()
+        #canvas.get_tk_widget().pack(side=ctk.TOP, fill=ctk.BOTH, expand=True)
+        
+    # Find the top errors contributing to 80% of the issues
+    df_pareto = df[df["cumpercentage"] <= 100]
+
+    # If the dataframe is empty, use the first row
+    if df_pareto.empty:
+        df_pareto = df.iloc[:1]
+
+
+    df_pareto_category = df_pareto['Error Code'].tolist()
+    final_analysis = [category for category in df_pareto_category]
+    print("\nTop Errors Contributing to 80% of Issues:")
+    print(final_analysis)
+
+    # Display the feedback for the errors causing 80% of the issues
+    relevant_errors = df_pareto['Error Code'].tolist()
+    print("\nFeedbacks for errors causing 80% of the issues:")
     feedbacks_by_module = {}
 
     # Find the error codes in the log file and display the feedback
-    for error in combined_error_counts:
+    for error in relevant_errors:
         if error.startswith('report'):
             with open(pyright_log_file, 'r', encoding='utf-8') as f:
                 log_content = f.readlines()
@@ -160,6 +209,8 @@ def run_analysis():
     sorted_feedbacks = sorted(feedbacks_by_module[module_name].items(), key=lambda x: x[1])
     feedbacks_by_module[module_name] = sorted_feedbacks
     
+# Apply Pareto's principle to the feedback
+
     feedback_text = ""
     for module_name, feedbacks in feedbacks_by_module.items():
         feedback_text += f"\n({module_name})\n"
@@ -169,51 +220,49 @@ def run_analysis():
             else:
                 feedback_text += str(feedback[0]) + "\n\n"
     update_gui(feedback_text)
+    show_chart()
 
 def update_gui(feedback_text):
+    for widget in chart_frame.winfo_children():
+        widget.destroy()
     for widget in feedback_frame.winfo_children():
         widget.destroy()
 
     feedback_text_frame = ctk.CTkFrame(feedback_frame, fg_color="transparent")
     feedback_text_frame.pack(fill=ctk.BOTH, expand=True)
 
-    feedback_label = ctk.CTkLabel(feedback_text_frame, text="Feedbacks", font=("Segoe UI", 20))
+    feedback_image = ctk.CTkImage(light_image = Image.open("Feedback.png"), dark_image= Image.open("Feedback.png"), size= (500, 10))    
+    feedback_label = ctk.CTkLabel(feedback_text_frame, text="", image = feedback_image)
     feedback_label.pack(pady=10)
 
     feedback_text_widget = ctk.CTkTextbox(master=feedback_text_frame, font=("Segoe UI", 12), fg_color="#212121", text_color="white", border_color="#FFFFFF", border_width=3, wrap="word")
     feedback_text_widget.pack(side="left", fill="both", expand=True)
     feedback_text_widget.insert(ctk.END, feedback_text)
 
-    feedback_scrollbar = ctk.CTkScrollbar(master=feedback_text_frame, command=feedback_text_widget.yview, button_color="#FFFFFF")
-    feedback_scrollbar.pack(side="right", fill="y")
-
-    feedback_text_widget.configure(yscrollcommand=feedback_scrollbar.set)
-
-    # Display total number of coding issues found
-    total_issues = sum(pylint_error_counts.values()) + sum(pyright_error_counts.values())
-    total_issues_label = ctk.CTkLabel(control_frame, text=f"Total Coding Issues Found: {total_issues}", font=("Segoe UI", 16), text_color='#FFFFFF')
-    total_issues_label.grid(row=2, column=0, padx=10, pady=5, sticky="w")
 
 root = ctk.CTk()
 root.geometry("1200x800")
 root.configure(fg_color='#212121')
-     
-title_label = ctk.CTkLabel(root, text="Pareto-Based Linter", font=("Segoe UI", 24), text_color='#FFFFFF', fg_color='#212121')
-title_label.pack(pady=20)
+#sa title 
+title_image = ctk.CTkImage(light_image = Image.open("Title.png"), dark_image= Image.open("Title.png"), size= (1200, 50))
+title_label = ctk.CTkLabel(root, text="", image= title_image)
 
+#title_label = ctk.CTkLabel(root, text="Pareto-Based Linter", font=("Segoe UI bold", 36), text_color='#FFFFFF', fg_color='#212121')
+title_label.pack(pady=20)
+# 3box under title
 control_frame = ctk.CTkFrame(root, border_color='#212121', fg_color='#212121')
 control_frame.pack(anchor="nw", fill=ctk.X, padx=15, pady=15)
-
-select_files_button = ctk.CTkButton(master=control_frame, text="Select Files", fg_color='#e0569c', hover_color= '#86335d', font=("Arial", 16),hover=True, command=select_files, height=75, width=200, border_width=3, border_color='#FFFFFF')
+# select files box
+select_files_button = ctk.CTkButton(master=control_frame, text="SELECT FILES", fg_color='#c11c84', hover_color= '#86335d', font=("Arial bold", 16),text_color='#FFFFFF', hover=True, command=select_files, height=75, width=200, border_width=3, border_color='#FFFFFF', corner_radius=1)
 select_files_button.grid(row=0, column=0, padx=10, pady=5, sticky="w")
-
-run_analysis_button = ctk.CTkButton(master=control_frame, border_width=3, fg_color='#e0569c', hover_color= '#86335d', text="Run Analysis", font=("DM Sans", 16), border_color='#FFFFFF', height=75, width=200, command=lambda: threading.Thread(target=run_analysis).start())
+# run box
+run_analysis_button = ctk.CTkButton(master=control_frame, border_width=3, fg_color='#e0569c', hover_color= '#86335d', text="RUN ANALYSIS", font=("DM Sans bold", 16),text_color='#FFFFFF', border_color='#FFFFFF', height=75, width=200, command=lambda: threading.Thread(target=run_analysis).start(), corner_radius=1)
 run_analysis_button.grid(row=1, column=0, padx=10, pady=15, sticky="w")
-
-text_frame = ctk.CTkFrame(control_frame, fg_color="transparent")
+# text frame sa abox under title
+text_frame = ctk.CTkFrame(control_frame, fg_color="transparent", corner_radius=1)
 text_frame.grid(row=0, column=1, rowspan=3, padx=5, pady=3, sticky="nsew")
-
-selected_files_text = ctk.CTkTextbox(master=text_frame, font=("Arial", 12), height=10, width=20, fg_color="#212121", text_color="white", border_color="#FFFFFF", border_width=3, wrap="word")
+# text sa box udner title
+selected_files_text = ctk.CTkTextbox(master=text_frame, font=("Arial", 12), height=10, width=20, fg_color="#212121", text_color="white", border_color="#FFFFFF", border_width=3, wrap="word", corner_radius=1)
 selected_files_text.pack(side="left", fill="both", expand=True)
 
 text_scrollbar = ctk.CTkScrollbar(master=text_frame, command=selected_files_text.yview, button_color="#FFFFFF")
@@ -225,7 +274,11 @@ control_frame.grid_columnconfigure(1, weight=50)
 control_frame.grid_rowconfigure(0, weight=50)
 control_frame.grid_rowconfigure(1, weight=1)
 
-feedback_frame = ctk.CTkFrame(root, fg_color='#212121')
+#chart_frame = ctk.CTkFrame(root, fg_color='#212121', border_color="#FFFFFF", corner_radius=1)
+#chart_frame.pack(side=ctk.LEFT, fill=ctk.X, expand=False)
+
+feedback_frame = ctk.CTkFrame(root, fg_color='#212121', border_color="#FFFFFF", corner_radius=1)
 feedback_frame.pack(side=ctk.RIGHT, fill=ctk.BOTH, expand=True)
+
 
 root.mainloop()
