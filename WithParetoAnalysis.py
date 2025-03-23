@@ -3,11 +3,13 @@
 #pip install pandas
 #pip install matplotlib
 #pip install customtkinter
+#pip install pillow
 
 import os
 import subprocess
 import re
 import pandas as pd
+from PIL import Image
 import matplotlib.pyplot as plt
 import customtkinter as ctk
 from tkinter import filedialog
@@ -229,7 +231,8 @@ def update_gui(feedback_text):
     feedback_text_frame = ctk.CTkFrame(feedback_frame, fg_color="transparent")
     feedback_text_frame.pack(fill=ctk.BOTH, expand=True)
 
-    feedback_label = ctk.CTkLabel(feedback_text_frame, text="Feedbacks", font=("Segoe UI", 20))
+    feedback_image = ctk.CTkImage(light_image = Image.open("Feedback.png"), dark_image= Image.open("Feedback.png"), size= (500, 10))    
+    feedback_label = ctk.CTkLabel(feedback_text_frame, text="", image = feedback_image)
     feedback_label.pack(pady=10)
 
     feedback_text_widget = ctk.CTkTextbox(master=feedback_text_frame, font=("Segoe UI", 12), fg_color="#212121", text_color="white", border_color="#FFFFFF", border_width=3, wrap="word")
@@ -240,23 +243,26 @@ def update_gui(feedback_text):
 root = ctk.CTk()
 root.geometry("1200x800")
 root.configure(fg_color='#212121')
-     
-title_label = ctk.CTkLabel(root, text="Pareto-Based Linter", font=("Segoe UI", 24), text_color='#FFFFFF', fg_color='#212121')
-title_label.pack(pady=20)
+#sa title 
+title_image = ctk.CTkImage(light_image = Image.open("Title.png"), dark_image= Image.open("Title.png"), size= (1200, 50))
+title_label = ctk.CTkLabel(root, text="", image= title_image)
 
+#title_label = ctk.CTkLabel(root, text="Pareto-Based Linter", font=("Segoe UI bold", 36), text_color='#FFFFFF', fg_color='#212121')
+title_label.pack(pady=20)
+# 3box under title
 control_frame = ctk.CTkFrame(root, border_color='#212121', fg_color='#212121')
 control_frame.pack(anchor="nw", fill=ctk.X, padx=15, pady=15)
-
-select_files_button = ctk.CTkButton(master=control_frame, text="Select Files", fg_color='#e0569c', hover_color= '#86335d', font=("Arial", 16),hover=True, command=select_files, height=75, width=200, border_width=3, border_color='#FFFFFF')
+# select files box
+select_files_button = ctk.CTkButton(master=control_frame, text="SELECT FILES", fg_color='#c11c84', hover_color= '#86335d', font=("Arial bold", 16),text_color='#FFFFFF', hover=True, command=select_files, height=75, width=200, border_width=3, border_color='#FFFFFF', corner_radius=1)
 select_files_button.grid(row=0, column=0, padx=10, pady=5, sticky="w")
-
-run_analysis_button = ctk.CTkButton(master=control_frame, border_width=3, fg_color='#e0569c', hover_color= '#86335d', text="Run Analysis", font=("DM Sans", 16), border_color='#FFFFFF', height=75, width=200, command=lambda: threading.Thread(target=run_analysis).start())
+# run box
+run_analysis_button = ctk.CTkButton(master=control_frame, border_width=3, fg_color='#e0569c', hover_color= '#86335d', text="RUN ANALYSIS", font=("DM Sans bold", 16),text_color='#FFFFFF', border_color='#FFFFFF', height=75, width=200, command=lambda: threading.Thread(target=run_analysis).start(), corner_radius=1)
 run_analysis_button.grid(row=1, column=0, padx=10, pady=15, sticky="w")
-
-text_frame = ctk.CTkFrame(control_frame, fg_color="transparent")
+# text frame sa abox under title
+text_frame = ctk.CTkFrame(control_frame, fg_color="transparent", corner_radius=1)
 text_frame.grid(row=0, column=1, rowspan=3, padx=5, pady=3, sticky="nsew")
-
-selected_files_text = ctk.CTkTextbox(master=text_frame, font=("Arial", 12), height=10, width=20, fg_color="#212121", text_color="white", border_color="#FFFFFF", border_width=3, wrap="word")
+# text sa box udner title
+selected_files_text = ctk.CTkTextbox(master=text_frame, font=("Arial", 12), height=10, width=20, fg_color="#212121", text_color="white", border_color="#FFFFFF", border_width=3, wrap="word", corner_radius=1)
 selected_files_text.pack(side="left", fill="both", expand=True)
 
 text_scrollbar = ctk.CTkScrollbar(master=text_frame, command=selected_files_text.yview, button_color="#FFFFFF")
@@ -268,10 +274,10 @@ control_frame.grid_columnconfigure(1, weight=50)
 control_frame.grid_rowconfigure(0, weight=50)
 control_frame.grid_rowconfigure(1, weight=1)
 
-chart_frame = ctk.CTkFrame(root, fg_color='#212121')
+chart_frame = ctk.CTkFrame(root, fg_color='#212121', border_color="#FFFFFF", corner_radius=1)
 chart_frame.pack(side=ctk.LEFT, fill=ctk.X, expand=False)
 
-feedback_frame = ctk.CTkFrame(root, fg_color='#212121')
+feedback_frame = ctk.CTkFrame(root, fg_color='#212121', border_color="#FFFFFF", corner_radius=1)
 feedback_frame.pack(side=ctk.RIGHT, fill=ctk.BOTH, expand=True)
 
 

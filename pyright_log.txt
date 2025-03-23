@@ -25,3 +25,6 @@ c:\Users\emman\OneDrive\Documents\GitHub\erroranalysisparetoprinciple\pytight.py
       "PhotoImage" is not assignable to "CTkImage"
       "PhotoImage" is not assignable to "None" (reportArgumentType)
 8 errors, 0 warnings, 0 informations 
+WARNING: there is a new pyright version available (v1.1.394 -> v1.1.397).
+Please install the new version or set PYRIGHT_PYTHON_FORCE_VERSION to `latest`
+
