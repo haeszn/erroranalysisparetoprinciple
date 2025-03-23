@@ -139,7 +139,7 @@ def run_analysis():
     #pareto Chart
     #def show_chart():
      #   fig, ax1 = plt.subplots(figsize=(10, 6))  # Adjust the size of the plot
-      ## ax1.set_facecolor('#444444')  # Set the background color of the axes
+      # ax1.set_facecolor('#444444')  # Set the background color of the axes
         #ax1.bar(df['Error Code'], df["Count"], color="C0")
         #ax1.set_ylabel("Number of Errors", color="C0")
         #ax1.tick_params(axis="y", colors="C0")
@@ -274,8 +274,8 @@ control_frame.grid_columnconfigure(1, weight=50)
 control_frame.grid_rowconfigure(0, weight=50)
 control_frame.grid_rowconfigure(1, weight=1)
 
-chart_frame = ctk.CTkFrame(root, fg_color='#212121', border_color="#FFFFFF", corner_radius=1)
-chart_frame.pack(side=ctk.LEFT, fill=ctk.X, expand=False)
+#chart_frame = ctk.CTkFrame(root, fg_color='#212121', border_color="#FFFFFF", corner_radius=1)
+#chart_frame.pack(side=ctk.LEFT, fill=ctk.X, expand=False)
 
 feedback_frame = ctk.CTkFrame(root, fg_color='#212121', border_color="#FFFFFF", corner_radius=1)
 feedback_frame.pack(side=ctk.RIGHT, fill=ctk.BOTH, expand=True)
