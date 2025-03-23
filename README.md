@@ -40,7 +40,7 @@ py -m pip install pandas
 py -m pip install matplotlib
 py -m pip install customtkinter
 py -m pip install pillow
-py -m pip install pyright
+py -m pip install pyright[spelling]
 
 
 Step 3: Run the Linter
