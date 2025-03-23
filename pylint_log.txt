@@ -28,7 +28,6 @@ WithParetoAnalysis.py:257:0: C0301: Line too long (281/100) (line-too-long)
 WithParetoAnalysis.py:260:0: C0301: Line too long (312/100) (line-too-long)
 WithParetoAnalysis.py:266:0: C0301: Line too long (206/100) (line-too-long)
 WithParetoAnalysis.py:269:0: C0301: Line too long (111/100) (line-too-long)
-WithParetoAnalysis.py:278:0: C0301: Line too long (109/100) (line-too-long)
 WithParetoAnalysis.py:285:0: C0304: Final newline missing (missing-final-newline)
 WithParetoAnalysis.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 WithParetoAnalysis.py:1:0: C0103: Module name "WithParetoAnalysis" doesn't conform to snake_case naming style (invalid-name)
@@ -48,5 +47,5 @@ WithParetoAnalysis.py:16:0: C0411: standard import "tkinter.filedialog" should b
 WithParetoAnalysis.py:19:0: C0411: standard import "threading" should be placed before third party imports "pandas", "PIL.Image", "matplotlib.pyplot", "customtkinter", "matplotlib.ticker.PercentFormatter", "matplotlib.backends.backend_tkagg.FigureCanvasTkAgg" (wrong-import-order)
 
 ------------------------------------------------------------------
-Your code has been rated at 7.34/10 (previous run: 7.34/10, +0.00)
+Your code has been rated at 7.40/10 (previous run: 7.40/10, +0.00)
 

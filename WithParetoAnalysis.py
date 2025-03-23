@@ -232,7 +232,7 @@ def update_gui(feedback_text):
     feedback_text_frame = ctk.CTkFrame(feedback_frame, fg_color="transparent")
     feedback_text_frame.pack(fill=ctk.BOTH, expand=True)
 
-    feedback_image = ctk.CTkImage(light_image = Image.open("Feedback.png"), dark_image= Image.open("Feedback.png"), size= (500, 10))    
+    feedback_image = ctk.CTkImage(light_image = Image.open("Feedback.png"), dark_image= Image.open("Feedback.png"), size= (500, 25))    
     feedback_label = ctk.CTkLabel(feedback_text_frame, text="", image = feedback_image)
     feedback_label.pack(pady=10)
 
@@ -275,7 +275,7 @@ control_frame.grid_columnconfigure(1, weight=50)
 control_frame.grid_rowconfigure(0, weight=50)
 control_frame.grid_rowconfigure(1, weight=1)
 
-chart_frame = ctk.CTkFrame(root, fg_color='#212121', border_color="#FFFFFF", border_width=3, corner_radius=1)
+chart_frame = ctk.CTkFrame(root, fg_color='#212121', corner_radius=1)
 chart_frame.pack(side=ctk.LEFT, fill=ctk.X, expand=False)
 
 feedback_frame = ctk.CTkFrame(root, fg_color='#212121', border_color="#FFFFFF", corner_radius=1)
