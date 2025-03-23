@@ -138,15 +138,15 @@ def run_analysis():
 
     #pareto Chart
     def show_chart():
-        fig, ax1 = plt.subplots(figsize=(10, 6))  # Adjust the size of the plot
+        fig, ax1 = plt.subplots(figsize=(6, 6))  # Adjust the size of the plot
         fig.patch.set_facecolor('#212121')  # Set the background color of the figure
         ax1.set_facecolor('#444444')  # Set the background color of the axes
         ax1.bar(df['Error Code'], df["Count"], color="C0")
         ax1.set_ylabel("Number of Errors", color="C0")
         ax1.tick_params(axis="y", colors="C0")
         ax1.set_xlabel("Error Code")
-        ax1.set_xticklabels(df['Error Code'], rotation=90)
-        ax1.set_title("Pareto Chart of Error Codes")
+        ax1.set_xticklabels(df['Error Code'], rotation=45, fontsize=5, font_color="white")
+        ax1.set_title("Pareto Chart of Error Codes", font_color="white")
         ax2 = ax1.twinx()
         ax2.plot(df['Error Code'], df["cumpercentage"], color="C1", marker="D", ms=7)
         ax2.yaxis.set_major_formatter(PercentFormatter())
