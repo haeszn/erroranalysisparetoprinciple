@@ -14,9 +14,11 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import customtkinter as ctk
 from tkinter import filedialog
+from tkinter import ttk
 from matplotlib.ticker import PercentFormatter
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import threading
+import time
 
 filess = None
 pyright_path = r"C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Scripts\pyright.exe"
@@ -40,6 +42,11 @@ def show_selected_files():
         selected_files_text.insert(ctk.END, "No files selected.")
 
 def run_analysis():
+
+    progress_bar = ttk.Progressbar(root, orient= "horizontal", length= 300, mode = "indeterminate")
+    progress_bar.pack (pady = 20, padx= 20 )
+    
+    progress_bar.start(15)
     if not filess:
         print("No files selected. Exiting.")
         return
@@ -52,8 +59,6 @@ def run_analysis():
             result = subprocess.run([pyright_path, python_file], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8')
             f.write(result.stdout)
             f.write(result.stderr)
-            
-
    
     pylint_log_file = "pylint_log.txt"
     with open(pylint_log_file, 'w', encoding='utf-8') as f:
@@ -61,6 +66,7 @@ def run_analysis():
             result = subprocess.run([pylint_path, "--exit-zero", "--output-format=text", python_file], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8')
             f.write(result.stdout)
             f.write(result.stderr)
+
 
     # Error codes for Pylint and Pyright
     pylint_error_codes = [
@@ -121,8 +127,7 @@ def run_analysis():
 
     print("\nPyright Error Counts:")
     for code, count in pyright_error_counts.items():
-        print(f"{code}: {count}")
- 
+        print(f"{code}: {count}") 
     
     # Filter the error counts to only 1 or higher
     filtered_pylint_error_counts = {code: count for code, count in pylint_error_counts.items() if count >= 1}
@@ -221,8 +226,13 @@ def run_analysis():
                 feedback_text += feedback + "\n\n"
             else:
                 feedback_text += str(feedback[0]) + "\n\n"
+
     update_gui(feedback_text)
     show_chart()
+        
+    progress_bar.destroy()
+
+
 
 def update_gui(feedback_text):
     for widget in chart_frame.winfo_children():
@@ -275,6 +285,8 @@ selected_files_text.configure(yscrollcommand=text_scrollbar.set)
 control_frame.grid_columnconfigure(1, weight=50)
 control_frame.grid_rowconfigure(0, weight=50)
 control_frame.grid_rowconfigure(1, weight=1)
+
+
 
 chart_frame = ctk.CTkFrame(root, fg_color='#212121', corner_radius=1)
 chart_frame.pack(side=ctk.LEFT, fill=ctk.X, expand=False)
