@@ -19,7 +19,8 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import threading
 
 filess = None
-
+pyright_path = r"C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Scripts\pyright.exe"
+pylint_path = r"C:\Users\ADMIN\AppData\Local\Programs\Python\Python313\Scripts\pylint.exe"
 
 def select_files():
     global filess
@@ -48,7 +49,7 @@ def run_analysis():
     pyright_log_file = "pyright_log.txt"
     with open(pyright_log_file, 'w', encoding='utf-8') as f:
         for python_file in python_files:
-            result = subprocess.run(["pyright", python_file], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8')
+            result = subprocess.run([pyright_path, python_file], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8')
             f.write(result.stdout)
             f.write(result.stderr)
             
@@ -57,7 +58,7 @@ def run_analysis():
     pylint_log_file = "pylint_log.txt"
     with open(pylint_log_file, 'w', encoding='utf-8') as f:
         for python_file in python_files:
-            result = subprocess.run(["pylint", "--exit-zero", "--output-format=text", python_file], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8')
+            result = subprocess.run([pylint_path, "--exit-zero", "--output-format=text", python_file], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8')
             f.write(result.stdout)
             f.write(result.stderr)
 
