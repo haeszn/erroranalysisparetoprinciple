@@ -1,5 +1,5 @@
 # Pareto-Based Linter Front End
-
+<img src="https://scontent.fdvo2-1.fna.fbcdn.net/v/t1.6435-9/51453498_1227686170714634_2489554067727056896_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHa6kr-2IlD4p3p4SLY7xvejaNrXzgM2gqNo2tfOAzaCnTocK4pYRbr4fvY2cAz0B31BnPE0-4mXZTOWyxnIlbf&_nc_ohc=9OLRDOTbvisQ7kNvwHAmnp1&_nc_oc=AdkgXH1drAh8kICBWS25Y3xvL1CZQM2BJnFTFxPZ9ri0ZZV2ANFmBXyWjA6f6nSwHKE&_nc_zt=23&_nc_ht=scontent.fdvo2-1.fna&_nc_gid=y9q9gRDhlXbJvW1eHBUlAA&oh=00_AfEynjMqkk7GT-boZVD31Ks_oVKEiq6G9JaDnIbSj8Q9ZQ&oe=681E1F9E">
 ## What the Software Does & Its Purpose
 The Pareto-Based Linter is a static code analysis tool that helps developers identify and address programming issues efficiently. It follows the Pareto principle (80/20 rule) to prioritize issues that have the most significant impact on code quality. This ensures that developers can focus on fixing the most critical issues first, improving maintainability and performance.
 
