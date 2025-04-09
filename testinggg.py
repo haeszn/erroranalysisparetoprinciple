@@ -371,8 +371,8 @@ def run_analysis():
             result = subprocess.run([pylint_path, "--exit-zero", "--output-format=text", python_file], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8')
             f.write(result.stdout)
             f.write(result.stderr)
-            progress_bar["value"] += (50 / len(python_files))  # Increment progress (50% for Pylint)
-            root.update_idletasks()  # Update the progress bar
+            progress_bar["value"] += (25 / len(python_files))  
+            root.update_idletasks()  
 
 
     # Error codes for Pylint and Pyright
@@ -484,7 +484,8 @@ def run_analysis():
     # If the dataframe is empty, use the first row
     if df_pareto.empty:
         df_pareto = df.iloc[:1]
-
+    progress_bar["value"] += (50 / len(python_files))  
+    root.update_idletasks()
 
     df_pareto_category = df_pareto['Error Code'].tolist()
     final_analysis = [category for category in df_pareto_category]
@@ -531,10 +532,10 @@ def run_analysis():
 
     sorted_feedbacks = sorted(feedbacks_by_module[module_name].items(), key=lambda x: x[1])
     feedbacks_by_module[module_name] = sorted_feedbacks
-    
-# Apply Pareto's principle to the feedback
-    progress_bar["value"] = 100
+    progress_bar["value"] += (75 / len(python_files))  
     root.update_idletasks()
+# Apply Pareto's principle to the feedback
+
 
     feedback_text = ""
     for module_name, feedbacks in feedbacks_by_module.items():
@@ -548,7 +549,8 @@ def run_analysis():
     with open(hello_log_file, 'w', encoding='utf-8') as f:
         for python_file in python_files:
             f.write(feedback_text)
-            
+    progress_bar["value"] = 100
+    root.update_idletasks()
     progress_bar.destroy()
     update_gui(feedback_text)
     show_chart()
