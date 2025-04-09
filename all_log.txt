@@ -1,0 +1,452 @@
+
+(testinggg.py)
+Line : 46 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 53 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 56 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 60 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 81 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 84 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 87 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 104 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 111 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 114 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 118 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 138 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 141 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 144 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 168 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 175 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 178 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 182 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 203 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 206 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 209 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 228 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 235 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 238 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 242 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 284 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 291 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 294 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 298 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 319 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 322 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 325 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 330 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 334 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 335 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 369 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 370 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 371 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 386 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 393 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 455 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 456 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 498 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 540 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 572 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 573 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 592 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 604 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 38 [C0301] - Line too long (103/100) (line-too-long)
+
+Line : 39 [C0301] - Line too long (103/100) (line-too-long)
+
+Line : 71 [C0301] - Line too long (104/100) (line-too-long)
+
+Line : 129 [C0301] - Line too long (104/100) (line-too-long)
+
+Line : 193 [C0301] - Line too long (104/100) (line-too-long)
+
+Line : 253 [C0301] - Line too long (104/100) (line-too-long)
+
+Line : 309 [C0301] - Line too long (104/100) (line-too-long)
+
+Line : 333 [C0301] - Line too long (111/100) (line-too-long)
+
+Line : 367 [C0301] - Line too long (102/100) (line-too-long)
+
+Line : 382 [C0301] - Line too long (141/100) (line-too-long)
+
+Line : 390 [C0301] - Line too long (179/100) (line-too-long)
+
+Line : 427 [C0301] - Line too long (103/100) (line-too-long)
+
+Line : 428 [C0301] - Line too long (103/100) (line-too-long)
+
+Line : 450 [C0301] - Line too long (105/100) (line-too-long)
+
+Line : 458 [C0301] - Line too long (109/100) (line-too-long)
+
+Line : 459 [C0301] - Line too long (111/100) (line-too-long)
+
+Line : 533 [C0301] - Line too long (144/100) (line-too-long)
+
+Line : 548 [C0301] - Line too long (144/100) (line-too-long)
+
+Line : 589 [C0301] - Line too long (119/100) (line-too-long)
+
+Line : 592 [C0301] - Line too long (132/100) (line-too-long)
+
+Line : 596 [C0301] - Line too long (185/100) (line-too-long)
+
+Line : 605 [C0301] - Line too long (120/100) (line-too-long)
+
+Line : 613 [C0301] - Line too long (281/100) (line-too-long)
+
+Line : 616 [C0301] - Line too long (312/100) (line-too-long)
+
+Line : 624 [C0301] - Line too long (207/100) (line-too-long)
+
+Line : 633 [C0301] - Line too long (131/100) (line-too-long)
+
+Line : 641 [C0301] - Line too long (185/100) (line-too-long)
+
+Line : 27 [R0914] - Too many local variables (17/15) (too-many-locals)
+
+Line : 93 [R0914] - Too many local variables (17/15) (too-many-locals)
+
+Line : 150 [R0914] - Too many local variables (17/15) (too-many-locals)
+
+Line : 215 [R0914] - Too many local variables (17/15) (too-many-locals)
+
+Line : 274 [R0914] - Too many local variables (17/15) (too-many-locals)
+
+Line : 365 [R0914] - Too many local variables (36/15) (too-many-locals)
+
+
+(WithParetoAnalysis.py)
+Line : 26 [C0301] - Line too long (111/100) (line-too-long)
+
+Line : 27 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 28 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 41 [R0914] - Too many local variables (34/15) (too-many-locals)
+
+Line : 51 [C0301] - Line too long (138/100) (line-too-long)
+
+Line : 54 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 56 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 60 [C0301] - Line too long (176/100) (line-too-long)
+
+Line : 95 [C0301] - Line too long (103/100) (line-too-long)
+
+Line : 96 [C0301] - Line too long (103/100) (line-too-long)
+
+Line : 118 [C0301] - Line too long (105/100) (line-too-long)
+
+Line : 124 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 125 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 127 [C0301] - Line too long (109/100) (line-too-long)
+
+Line : 128 [C0301] - Line too long (111/100) (line-too-long)
+
+Line : 158 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 193 [C0301] - Line too long (144/100) (line-too-long)
+
+Line : 200 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 208 [C0301] - Line too long (144/100) (line-too-long)
+
+Line : 212 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 235 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 235 [C0301] - Line too long (132/100) (line-too-long)
+
+Line : 239 [C0301] - Line too long (185/100) (line-too-long)
+
+Line : 247 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 248 [C0301] - Line too long (120/100) (line-too-long)
+
+Line : 251 [C0301] - Line too long (131/100) (line-too-long)
+
+Line : 257 [C0301] - Line too long (281/100) (line-too-long)
+
+Line : 260 [C0301] - Line too long (312/100) (line-too-long)
+
+Line : 266 [C0301] - Line too long (206/100) (line-too-long)
+
+Line : 269 [C0301] - Line too long (111/100) (line-too-long)
+
+
+(testinggg.py)
+Line : 46 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 53 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 56 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 60 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 81 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 84 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 87 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 104 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 111 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 114 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 118 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 138 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 141 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 144 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 168 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 175 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 178 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 182 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 203 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 206 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 209 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 228 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 235 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 238 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 242 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 284 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 291 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 294 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 298 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 319 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 322 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 325 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 330 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 334 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 335 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 369 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 370 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 371 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 386 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 393 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 455 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 456 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 498 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 540 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 572 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 573 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 592 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 604 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 38 [C0301] - Line too long (103/100) (line-too-long)
+
+Line : 39 [C0301] - Line too long (103/100) (line-too-long)
+
+Line : 71 [C0301] - Line too long (104/100) (line-too-long)
+
+Line : 129 [C0301] - Line too long (104/100) (line-too-long)
+
+Line : 193 [C0301] - Line too long (104/100) (line-too-long)
+
+Line : 253 [C0301] - Line too long (104/100) (line-too-long)
+
+Line : 309 [C0301] - Line too long (104/100) (line-too-long)
+
+Line : 333 [C0301] - Line too long (111/100) (line-too-long)
+
+Line : 367 [C0301] - Line too long (102/100) (line-too-long)
+
+Line : 382 [C0301] - Line too long (141/100) (line-too-long)
+
+Line : 390 [C0301] - Line too long (179/100) (line-too-long)
+
+Line : 427 [C0301] - Line too long (103/100) (line-too-long)
+
+Line : 428 [C0301] - Line too long (103/100) (line-too-long)
+
+Line : 450 [C0301] - Line too long (105/100) (line-too-long)
+
+Line : 458 [C0301] - Line too long (109/100) (line-too-long)
+
+Line : 459 [C0301] - Line too long (111/100) (line-too-long)
+
+Line : 533 [C0301] - Line too long (144/100) (line-too-long)
+
+Line : 548 [C0301] - Line too long (144/100) (line-too-long)
+
+Line : 589 [C0301] - Line too long (119/100) (line-too-long)
+
+Line : 592 [C0301] - Line too long (132/100) (line-too-long)
+
+Line : 596 [C0301] - Line too long (185/100) (line-too-long)
+
+Line : 605 [C0301] - Line too long (120/100) (line-too-long)
+
+Line : 613 [C0301] - Line too long (281/100) (line-too-long)
+
+Line : 616 [C0301] - Line too long (312/100) (line-too-long)
+
+Line : 624 [C0301] - Line too long (207/100) (line-too-long)
+
+Line : 633 [C0301] - Line too long (131/100) (line-too-long)
+
+Line : 641 [C0301] - Line too long (185/100) (line-too-long)
+
+Line : 27 [R0914] - Too many local variables (17/15) (too-many-locals)
+
+Line : 93 [R0914] - Too many local variables (17/15) (too-many-locals)
+
+Line : 150 [R0914] - Too many local variables (17/15) (too-many-locals)
+
+Line : 215 [R0914] - Too many local variables (17/15) (too-many-locals)
+
+Line : 274 [R0914] - Too many local variables (17/15) (too-many-locals)
+
+Line : 365 [R0914] - Too many local variables (36/15) (too-many-locals)
+
+
+(WithParetoAnalysis.py)
+Line : 26 [C0301] - Line too long (111/100) (line-too-long)
+
+Line : 27 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 28 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 41 [R0914] - Too many local variables (34/15) (too-many-locals)
+
+Line : 51 [C0301] - Line too long (138/100) (line-too-long)
+
+Line : 54 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 56 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 60 [C0301] - Line too long (176/100) (line-too-long)
+
+Line : 95 [C0301] - Line too long (103/100) (line-too-long)
+
+Line : 96 [C0301] - Line too long (103/100) (line-too-long)
+
+Line : 118 [C0301] - Line too long (105/100) (line-too-long)
+
+Line : 124 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 125 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 127 [C0301] - Line too long (109/100) (line-too-long)
+
+Line : 128 [C0301] - Line too long (111/100) (line-too-long)
+
+Line : 158 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 193 [C0301] - Line too long (144/100) (line-too-long)
+
+Line : 200 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 208 [C0301] - Line too long (144/100) (line-too-long)
+
+Line : 212 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 235 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 235 [C0301] - Line too long (132/100) (line-too-long)
+
+Line : 239 [C0301] - Line too long (185/100) (line-too-long)
+
+Line : 247 [C0303] - Trailing whitespace (trailing-whitespace)
+
+Line : 248 [C0301] - Line too long (120/100) (line-too-long)
+
+Line : 251 [C0301] - Line too long (131/100) (line-too-long)
+
+Line : 257 [C0301] - Line too long (281/100) (line-too-long)
+
+Line : 260 [C0301] - Line too long (312/100) (line-too-long)
+
+Line : 266 [C0301] - Line too long (206/100) (line-too-long)
+
+Line : 269 [C0301] - Line too long (111/100) (line-too-long)
+
