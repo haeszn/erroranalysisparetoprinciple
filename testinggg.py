@@ -71,20 +71,21 @@ def error():
                             {f"Line : {line_number} [{error_code}] - {error_message}": int(line_number)}
                         )
 
-# Sort feedbacks by line number
     for module_name in feedbacks_by_module:
         sorted_feedbacks = sorted(feedbacks_by_module[module_name].items(), key=lambda x: x[1])
         feedbacks_by_module[module_name] = sorted_feedbacks
 
-# Generate feedback text
     feedback_text = ""
     for module_name, feedbacks in feedbacks_by_module.items():
         feedback_text += f"\n({module_name})\n"
-        for feedback in feedbacks:
-            feedback_text += feedback[0] + "\n\n"
+        if feedbacks:  
+            for feedback in feedbacks:
+                feedback_text += feedback[0] + "\n\n"
+        else:  
+            feedback_text += "There are no errors found for this file.\n\n"
 
-    if not feedback_text.strip():
-        feedback_text = "There are no convention errors found."
+    if not feedback_text.strip():  
+        feedback_text = "No files were analyzed or no errors were found."
 
     print(feedback_text)
     update_gui(feedback_text)
@@ -127,21 +128,21 @@ def refactor():
                         feedbacks_by_module[current_file_name].update(
                             {f"Line : {line_number} [{error_code}] - {error_message}": int(line_number)}
                         )
-
-# Sort feedbacks by line number
     for module_name in feedbacks_by_module:
         sorted_feedbacks = sorted(feedbacks_by_module[module_name].items(), key=lambda x: x[1])
         feedbacks_by_module[module_name] = sorted_feedbacks
 
-# Generate feedback text
     feedback_text = ""
     for module_name, feedbacks in feedbacks_by_module.items():
         feedback_text += f"\n({module_name})\n"
-        for feedback in feedbacks:
-            feedback_text += feedback[0] + "\n\n"
+        if feedbacks:  
+            for feedback in feedbacks:
+                feedback_text += feedback[0] + "\n\n"
+        else:  
+            feedback_text += "There are no errors found for this file.\n\n"
 
-    if not feedback_text.strip():
-        feedback_text = "There are no convention errors found."
+    if not feedback_text.strip():  
+        feedback_text = "No files were analyzed or no errors were found."
 
     print(feedback_text)
     update_gui(feedback_text)
@@ -192,20 +193,21 @@ def warning():
                             {f"Line : {line_number} [{error_code}] - {error_message}": int(line_number)}
                         )
 
-# Sort feedbacks by line number
     for module_name in feedbacks_by_module:
         sorted_feedbacks = sorted(feedbacks_by_module[module_name].items(), key=lambda x: x[1])
         feedbacks_by_module[module_name] = sorted_feedbacks
 
-# Generate feedback text
     feedback_text = ""
     for module_name, feedbacks in feedbacks_by_module.items():
         feedback_text += f"\n({module_name})\n"
-        for feedback in feedbacks:
-            feedback_text += feedback[0] + "\n\n"
+        if feedbacks:  
+            for feedback in feedbacks:
+                feedback_text += feedback[0] + "\n\n"
+        else:  
+            feedback_text += "There are no errors found for this file.\n\n"
 
-    if not feedback_text.strip():
-        feedback_text = "There are no convention errors found."
+    if not feedback_text.strip():  
+        feedback_text = "No files were analyzed or no errors were found."
 
     print(feedback_text)
     update_gui(feedback_text)
@@ -307,20 +309,21 @@ def fatal():
                             {f"Line : {line_number} [{error_code}] - {error_message}": int(line_number)}
                         )
 
-# Sort feedbacks by line number
     for module_name in feedbacks_by_module:
         sorted_feedbacks = sorted(feedbacks_by_module[module_name].items(), key=lambda x: x[1])
         feedbacks_by_module[module_name] = sorted_feedbacks
 
-# Generate feedback text
     feedback_text = ""
     for module_name, feedbacks in feedbacks_by_module.items():
         feedback_text += f"\n({module_name})\n"
-        for feedback in feedbacks:
-            feedback_text += feedback[0] + "\n\n"
+        if feedbacks:  
+            for feedback in feedbacks:
+                feedback_text += feedback[0] + "\n\n"
+        else:  
+            feedback_text += "There are no errors found for this file.\n\n"
 
-    if not feedback_text.strip():
-        feedback_text = "There are no convention errors found."
+    if not feedback_text.strip():  
+        feedback_text = "No files were analyzed or no errors were found."
 
     print(feedback_text)
     update_gui(feedback_text)
@@ -342,12 +345,29 @@ def show_selected_files():
     else:
         selected_files_text.insert(ctk.END, "No files selected.")
 
+def smooth_increment(progress_bar, target_value, step=1, delay=0.01):
+    """
+    Smoothly increment the progress bar to the target value.
+    :param progress_bar: The progress bar widget.
+    :param target_value: The value to increment the progress bar to.
+    :param step: The step size for each increment.
+    :param delay: The delay (in seconds) between each increment.
+    """
+    current_value = progress_bar["value"]
+    while current_value < target_value:
+        current_value += step
+        if current_value > target_value:
+            current_value = target_value
+        progress_bar["value"] = current_value
+        root.update_idletasks()
+        time.sleep(delay)
+
 def run_analysis():
 
     progress_bar = ttk.Progressbar(control_frame, orient="horizontal", length=500, mode="determinate")
     progress_bar.grid(pady=5, padx=500, sticky='nsew', row=1, columnspan=3)
-    progress_bar["maximum"] = 100  # Set the maximum value of the progress bar
-    progress_bar["value"] = 0  # Initialize the progress bar value
+    progress_bar["maximum"] = 100  
+    progress_bar["value"] = 0  
     
     if not filess:
         print("No files selected. Exiting.")
@@ -362,8 +382,7 @@ def run_analysis():
             result = subprocess.run([pyright_path, python_file], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8')
             f.write(result.stdout)
             f.write(result.stderr)
-            progress_bar["value"] += (50 / len(python_files))  
-            root.update_idletasks()  
+            smooth_increment(progress_bar, progress_bar["value"] + 12.5 / len(python_files))
    
     pylint_log_file = "pylint_log.txt"
     with open(pylint_log_file, 'w', encoding='utf-8') as f:
@@ -372,8 +391,7 @@ def run_analysis():
             f.write(result.stdout)
             f.write(result.stderr)
             progress_bar["value"] += (25 / len(python_files))  
-            root.update_idletasks()  
-
+            smooth_increment(progress_bar, progress_bar["value"] + (25 / len(python_files)))
 
     # Error codes for Pylint and Pyright
     pylint_error_codes = [
@@ -484,8 +502,7 @@ def run_analysis():
     # If the dataframe is empty, use the first row
     if df_pareto.empty:
         df_pareto = df.iloc[:1]
-    progress_bar["value"] += (50 / len(python_files))  
-    root.update_idletasks()
+    smooth_increment(progress_bar, progress_bar["value"] + (50 / len(python_files)))
 
     df_pareto_category = df_pareto['Error Code'].tolist()
     final_analysis = [category for category in df_pareto_category]
@@ -532,8 +549,7 @@ def run_analysis():
 
     sorted_feedbacks = sorted(feedbacks_by_module[module_name].items(), key=lambda x: x[1])
     feedbacks_by_module[module_name] = sorted_feedbacks
-    progress_bar["value"] += (75 / len(python_files))  
-    root.update_idletasks()
+    smooth_increment(progress_bar, progress_bar["value"] + (75 / len(python_files)))
 # Apply Pareto's principle to the feedback
 
 
@@ -549,8 +565,7 @@ def run_analysis():
     with open(hello_log_file, 'w', encoding='utf-8') as f:
         for python_file in python_files:
             f.write(feedback_text)
-    progress_bar["value"] = 100
-    root.update_idletasks()
+    smooth_increment(progress_bar, 100)
     progress_bar.destroy()
     update_gui(feedback_text)
     show_chart()
