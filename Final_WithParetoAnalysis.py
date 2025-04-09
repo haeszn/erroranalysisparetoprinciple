@@ -550,7 +550,6 @@ def run_analysis():
     sorted_feedbacks = sorted(feedbacks_by_module[module_name].items(), key=lambda x: x[1])
     feedbacks_by_module[module_name] = sorted_feedbacks
     smooth_increment(progress_bar, progress_bar["value"] + (75 / len(python_files)))
-# Apply Pareto's principle to the feedback
 
 
     feedback_text = ""
@@ -579,10 +578,9 @@ def all():
         log_content = f.read()
 
     update_gui(log_content)
+    
 
 def update_gui(feedback_text):
-    for widget in chart_frame.winfo_children():
-        widget.destroy()
     for widget in feedback_frame.winfo_children():
         widget.destroy()
 
