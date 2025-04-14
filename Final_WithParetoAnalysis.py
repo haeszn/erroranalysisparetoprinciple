@@ -364,8 +364,8 @@ def smooth_increment(progress_bar, target_value, step=1, delay=0.01):
 
 def run_analysis():
 
-    progress_bar = ttk.Progressbar(control_frame, orient="horizontal", length=500, mode="determinate")
-    progress_bar.grid(pady=5, padx=500, sticky='nsew', row=1, columnspan=3)
+    progress_bar = ttk.Progressbar(control_frame, orient="horizontal", length=1000, mode="determinate")
+    progress_bar.grid(pady=5, padx=200, sticky='nsew', row=1, columnspan=3)
     progress_bar["maximum"] = 100  
     progress_bar["value"] = 0  
     
@@ -595,6 +595,16 @@ def update_gui(feedback_text):
     feedback_text_widget.pack(side="left", fill="both", expand=True)
     feedback_text_widget.insert(ctk.END, feedback_text)
 
+    button_functions = {"All": all, "Error": error, "Refactor": refactor, "Warning": warning, "Convention": convention, "Fatal": fatal}
+
+
+    error_frame = ctk.CTkFrame(feedback_frame, border_color='#FFFFFF', fg_color='#212121', border_width= 2)
+    error_frame.pack(pady=5, padx=5, fill= 'x')
+
+    for label, func in button_functions.items():
+        button = ctk.CTkButton(error_frame, border_width= 2, border_color="#FFFFFF",font=("Arial", 14), text=label, corner_radius=0, fg_color='#e0569c', height=45 , width=100, command=func)
+        button.pack(side="left", padx=5, pady= 5,  fill= 'x')
+
 
 root = ctk.CTk()
 root.geometry("1200x800")
@@ -608,14 +618,14 @@ title_label.pack(pady=20)
 control_frame = ctk.CTkFrame(root, border_color='#212121', fg_color='#212121', height= 75)
 control_frame.pack(anchor="n", padx=15, pady=15)
 # select files box
-select_files_button = ctk.CTkButton(master=control_frame, text="SELECT FILES", fg_color='#c11c84', hover_color= '#86335d', font=("Arial bold", 12),text_color='#FFFFFF', hover=True, command=select_files, height=75, width=150, border_width=3, border_color='#FFFFFF', corner_radius=1)
+select_files_button = ctk.CTkButton(master=control_frame, text="SELECT FILES", fg_color='#c11c84', hover_color= '#86335d', font=("Arial bold", 12),text_color='#FFFFFF', hover=True, command=select_files, height=75, width=175, border_width=3, border_color='#FFFFFF', corner_radius=1)
 select_files_button.grid(row=0, column=0, padx=5, pady=5, sticky="ew")
 # run box
-run_analysis_button = ctk.CTkButton(master=control_frame, border_width=3, fg_color='#e0569c', hover_color= '#86335d', text="RUN ANALYSIS", font=("DM Sans bold", 12),text_color='#FFFFFF', border_color='#FFFFFF', height=75, width=150, command=lambda: threading.Thread(target=run_analysis).start(), corner_radius=1)
-run_analysis_button.grid(row=0, column=1, padx=5, pady=5, sticky="ew")
+run_analysis_button = ctk.CTkButton(master=control_frame, border_width=3, fg_color='#e0569c', hover_color= '#86335d', text="RUN ANALYSIS", font=("DM Sans bold", 12),text_color='#FFFFFF', border_color='#FFFFFF', height=75, width=175, command=lambda: threading.Thread(target=run_analysis).start(), corner_radius=1)
+run_analysis_button.grid(row=0, column=2, padx=5, pady=5, sticky="ew")
 # text frame sa abox under title
 text_frame = ctk.CTkFrame(control_frame, fg_color="transparent", corner_radius=1)
-text_frame.grid(row=0, column=2,padx=5, pady=5, sticky="nsew")
+text_frame.grid(row=0, column=1,padx=5, pady=5, sticky="nsew")
 text_frame.grid_propagate(False)  # Prevent auto-resizing to children
 
 # text sa box udner title
@@ -628,23 +638,17 @@ control_frame.grid_columnconfigure(0, weight=50)
 control_frame.grid_rowconfigure(0, weight=50)
 control_frame.grid_rowconfigure(1, weight=1)
 
-button_functions = {"All": all, "Error": error, "Refactor": refactor, "Warning": warning, "Convention": convention, "Fatal": fatal}
-
-
-error_frame = ctk.CTkFrame(root, border_color='#FFFFFF', fg_color='#212121', border_width= 2)
-error_frame.pack(pady=5, padx=10)
 
 # Create and pack buttons
-for label, func in button_functions.items():
-    button = ctk.CTkButton(error_frame, border_width= 2, border_color="#FFFFFF",font=("Arial", 20), text=label, corner_radius=0, fg_color='#e0569c', height=45 , width=175, command=func)
-    button.pack(side="left", padx=5, pady= 5)
 
 
 chart_frame = ctk.CTkFrame(root, fg_color='#212121', corner_radius=1)
 chart_frame.pack(side=ctk.LEFT, fill=ctk.X, expand=False)
 
 feedback_frame = ctk.CTkFrame(root, fg_color='#212121', border_color="#FFFFFF", corner_radius=1)
-feedback_frame.pack(side=ctk.RIGHT, fill=ctk.BOTH, expand=True)
+feedback_frame.pack(side=ctk.RIGHT, fill=ctk.BOTH, expand=True, padx = 30)
+
+
 
 
 root.mainloop()
