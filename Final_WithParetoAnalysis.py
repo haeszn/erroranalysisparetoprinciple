@@ -469,7 +469,7 @@ def run_analysis():
 
     #pareto Chart
     def show_chart():
-        fig, ax1 = plt.subplots(figsize=(6, 8))  # Adjust the size of the plot
+        fig, ax1 = plt.subplots(figsize=(6, 25))  # Adjust the size of the plot
         fig.patch.set_facecolor('#212121')  # Set the background color of the figure
         ax1.set_facecolor('#444444')  # Set the background color of the axes
 
@@ -489,7 +489,7 @@ def run_analysis():
         ax2.yaxis.set_major_formatter(PercentFormatter())
         ax2.tick_params(axis="y", colors="C1")
 
-        plt.subplots_adjust(bottom=0.5)  # Adjust layout to prevent cutoffs
+        plt.subplots_adjust(bottom=0.4)  # Adjust layout to prevent cutoffs
 
         # Add the chart to the chart frame
         canvas = FigureCanvasTkAgg(fig, master=chart_frame)
@@ -584,8 +584,18 @@ def update_gui(feedback_text):
     for widget in feedback_frame.winfo_children():
         widget.destroy()
 
+    button_functions = {"All": all, "Error": error, "Refactor": refactor, "Warning": warning, "Convention": convention, "Fatal": fatal}
+
+
+    error_frame = ctk.CTkFrame(feedback_frame, border_color='#FFFFFF', fg_color='#212121', border_width= 2)
+    error_frame.pack(pady=5, padx=5, fill= 'x')
+
+    for label, func in button_functions.items():
+        button = ctk.CTkButton(error_frame, border_width= 2, border_color="#FFFFFF",font=("Arial", 14), text=label, corner_radius=0, fg_color='#e0569c', height=45 , width=115, command=func)
+        button.pack(expand = 'True', padx=5, pady= 5,  fill= 'x', side = 'left')
+
     feedback_text_frame = ctk.CTkFrame(feedback_frame, fg_color="transparent", border_color="#FFFFFF", border_width=3,)
-    feedback_text_frame.pack(fill=ctk.BOTH, expand=True)
+    feedback_text_frame.pack(fill=ctk.BOTH, expand=True, pady= 15)
 
     feedback_image = ctk.CTkImage(light_image = Image.open("Feedback.png"), dark_image= Image.open("Feedback.png"), size= (200, 25))    
     feedback_label = ctk.CTkLabel(feedback_text_frame, text="", image = feedback_image)
@@ -595,15 +605,7 @@ def update_gui(feedback_text):
     feedback_text_widget.pack(side="left", fill="both", expand=True)
     feedback_text_widget.insert(ctk.END, feedback_text)
 
-    button_functions = {"All": all, "Error": error, "Refactor": refactor, "Warning": warning, "Convention": convention, "Fatal": fatal}
-
-
-    error_frame = ctk.CTkFrame(feedback_frame, border_color='#FFFFFF', fg_color='#212121', border_width= 2)
-    error_frame.pack(pady=5, padx=5, fill= 'x')
-
-    for label, func in button_functions.items():
-        button = ctk.CTkButton(error_frame, border_width= 2, border_color="#FFFFFF",font=("Arial", 14), text=label, corner_radius=0, fg_color='#e0569c', height=45 , width=100, command=func)
-        button.pack(side="left", padx=5, pady= 5,  fill= 'x')
+    
 
 
 root = ctk.CTk()
@@ -616,7 +618,7 @@ title_label = ctk.CTkLabel(root, text="", image= title_image)
 title_label.pack(pady=20)
 # 3box under title
 control_frame = ctk.CTkFrame(root, border_color='#212121', fg_color='#212121', height= 75)
-control_frame.pack(anchor="n", padx=15, pady=15)
+control_frame.pack(anchor="n", padx=15, pady=5)
 # select files box
 select_files_button = ctk.CTkButton(master=control_frame, text="SELECT FILES", fg_color='#c11c84', hover_color= '#86335d', font=("Arial bold", 12),text_color='#FFFFFF', hover=True, command=select_files, height=75, width=175, border_width=3, border_color='#FFFFFF', corner_radius=1)
 select_files_button.grid(row=0, column=0, padx=5, pady=5, sticky="ew")
@@ -643,10 +645,10 @@ control_frame.grid_rowconfigure(1, weight=1)
 
 
 chart_frame = ctk.CTkFrame(root, fg_color='#212121', corner_radius=1)
-chart_frame.pack(side=ctk.LEFT, fill=ctk.X, expand=False)
+chart_frame.pack(side=ctk.LEFT, fill=ctk.BOTH, expand=False)
 
 feedback_frame = ctk.CTkFrame(root, fg_color='#212121', border_color="#FFFFFF", corner_radius=1)
-feedback_frame.pack(side=ctk.RIGHT, fill=ctk.BOTH, expand=True, padx = 30)
+feedback_frame.pack(side=ctk.RIGHT, fill=ctk.BOTH, expand=True, padx = 30, pady= 20)
 
 
 
