@@ -35,7 +35,8 @@ Step 2: Install Python & Dependencies
 Download and install Python from python.org.
 
 Open a terminal or command prompt and install the required packages using:
-```py -m pip install pylint
+```
+py -m pip install pylint
 py -m pip install pandas
 py -m pip install matplotlib
 py -m pip install customtkinter
