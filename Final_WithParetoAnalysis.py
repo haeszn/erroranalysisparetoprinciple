@@ -595,7 +595,7 @@ def update_gui(feedback_text):
         button.pack(expand = 'True', padx=5, pady= 5,  fill= 'x', side = 'left')
 
     feedback_text_frame = ctk.CTkFrame(feedback_frame, fg_color="transparent", border_color="#FFFFFF", border_width=3,)
-    feedback_text_frame.pack(fill=ctk.BOTH, expand=True, pady= 15)
+    feedback_text_frame.pack(fill=ctk.BOTH, expand=True)
 
     feedback_image = ctk.CTkImage(light_image = Image.open("Feedback.png"), dark_image= Image.open("Feedback.png"), size= (200, 25))    
     feedback_label = ctk.CTkLabel(feedback_text_frame, text="", image = feedback_image)
@@ -620,11 +620,15 @@ title_label.pack(pady=20)
 control_frame = ctk.CTkFrame(root, border_color='#212121', fg_color='#212121', height= 75)
 control_frame.pack(anchor="n", padx=15, pady=5)
 # select files box
-select_files_button = ctk.CTkButton(master=control_frame, text="SELECT FILES", fg_color='#c11c84', hover_color= '#86335d', font=("Arial bold", 12),text_color='#FFFFFF', hover=True, command=select_files, height=75, width=175, border_width=3, border_color='#FFFFFF', corner_radius=1)
+select_files_button = ctk.CTkButton(master=control_frame, text="SELECT FILES", fg_color='#c11c84', hover_color= '#86335d', font=("Arial bold", 16),text_color='#FFFFFF', hover=True, command=select_files, height=75, width=175, border_width=3, border_color='#FFFFFF', corner_radius=1)
 select_files_button.grid(row=0, column=0, padx=5, pady=5, sticky="ew")
 # run box
-run_analysis_button = ctk.CTkButton(master=control_frame, border_width=3, fg_color='#e0569c', hover_color= '#86335d', text="RUN ANALYSIS", font=("DM Sans bold", 12),text_color='#FFFFFF', border_color='#FFFFFF', height=75, width=175, command=lambda: threading.Thread(target=run_analysis).start(), corner_radius=1)
+player_image = ctk.CTkImage(light_image=Image.open("player.png"), dark_image=Image.open("player.png"), size=(125, 40))
+run_analysis_button = ctk.CTkButton(master=control_frame, border_width=3, text="", image=player_image,fg_color='#e0569c', hover_color= '#86335d', border_color='#FFFFFF', height=75, width=175, command=lambda: threading.Thread(target=run_analysis).start(), corner_radius=1)
 run_analysis_button.grid(row=0, column=2, padx=5, pady=5, sticky="ew")
+
+
+
 # text frame sa abox under title
 text_frame = ctk.CTkFrame(control_frame, fg_color="transparent", corner_radius=1)
 text_frame.grid(row=0, column=1,padx=5, pady=5, sticky="nsew")
