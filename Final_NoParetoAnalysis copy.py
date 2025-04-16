@@ -497,7 +497,7 @@ def run_analysis():
         canvas.get_tk_widget().pack(side=ctk.TOP, fill=ctk.BOTH, expand=True)
         
     # Find the top errors contributing to 80% of the issues
-    df_pareto = df[df["cumpercentage"] <= 80]
+    df_pareto = df[df["cumpercentage"] <= 100]
 
     # If the dataframe is empty, use the first row
     if df_pareto.empty:
@@ -597,7 +597,7 @@ def update_gui(feedback_text):
     feedback_text_frame = ctk.CTkFrame(feedback_frame, fg_color="transparent", border_color="#FFFFFF", border_width=3,)
     feedback_text_frame.pack(fill=ctk.BOTH, expand=True)
 
-    feedback_image = ctk.CTkImage(light_image = Image.open("output.png"), dark_image= Image.open("output.png"), size= (200, 25))    
+    feedback_image = ctk.CTkImage(light_image = Image.open("Feedback.png"), dark_image= Image.open("Feedback.png"), size= (200, 25))    
     feedback_label = ctk.CTkLabel(feedback_text_frame, text="", image = feedback_image)
     feedback_label.pack(pady=10)
 
